@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -8,9 +8,13 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #73767d;
-  color: #fff;
+  background: radial-gradient(circle at top, #2b2f3a 0%, #0b0c10 60%, #06070a 100%);
+  color: #ffffff;
   line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 18px 0;
 }
 
 ul {
@@ -20,7 +24,7 @@ ul {
 .container {
   max-width: 768px;
   margin: auto;
-  padding: 0 20px;
+  padding: 0 18px;
 }
 
 header {
@@ -29,48 +33,86 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
+/* ==============================
+   CARD (Apple Glass)
+================================= */
 .card {
-  background-color: #fff;
-  color: #000000;
-  border-radius: 15px;
-  padding: 40px 50px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 22px;
+  padding: 44px 54px;
   margin: 20px 0;
   position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 22px 75px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Reverse Card */
 .card.reverse {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.28);
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .card h2 {
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.95);
 }
 
+/* ==============================
+   RATING (Apple Pill + Soft Glow)
+================================= */
 .rating {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 30px 0 40px;
+  margin: 26px 0 34px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .rating li,
 .num-display {
   position: relative;
-  background: #e6e6e6;
-  width: 57px;
-  height: 55px;
+  width: 56px;
+  height: 56px;
   padding: 10px;
   text-align: center;
   border-radius: 50%;
-  font-size: 19px;
-  border: 1px #eee solid;
-  transition: 0.3s;
+  font-size: 18px;
+  font-weight: 700;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border 0.22s ease;
 }
 
 .rating li label {
@@ -83,98 +125,199 @@ header {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.22s ease;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.rating li:hover,
+/* Hover (Apple Glow) */
+.rating li:hover {
+  transform: translateY(-2px) scale(1.06);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.55),
+    0 0 0 6px rgba(255, 255, 255, 0.04);
+}
+
+/* num-display (Apple Accent) */
 .num-display {
+  background: linear-gradient(135deg, #ff2d55, #7c3aed);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* IMPORTANT: kept your selector */
+.rating li:checked {
   background: #aa0aa5;
   color: #fff;
 }
-.rating li:checked{
-  background: #aa0aa5;
-  color: #fff;
-}
+
 [type='radio'] {
   opacity: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
+/* Checked (iOS Gradient) */
 [type='radio']:checked ~ label {
-  background: hsl(171, 100%, 77%);
+  background: linear-gradient(135deg, #ff2d55, #7c3aed);
   color: #fff;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.55),
+    0 0 0 6px rgba(255, 45, 85, 0.12);
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
+/* ==============================
+   INPUT GROUP (Apple Field)
+================================= */
 .input-group {
   display: flex;
   flex-direction: row;
-  border: 1px solid #ccc;
-  padding: 8px 10px;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  gap: 10px;
+  transition: border 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.input-group:focus-within {
+  border: 1px solid rgba(255, 45, 85, 0.55);
+  box-shadow: 0 0 0 5px rgba(255, 45, 85, 0.16);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 input {
   flex-grow: 2;
   border: none;
   font-size: 16px;
+  font-family: inherit;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  padding: 6px 4px;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 input:focus {
   outline: none;
 }
 
+/* ==============================
+   FEEDBACK STATS
+================================= */
 .feedback-stats {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
+/* Num Display Position */
 .num-display {
   position: absolute;
-  top: -10px;
-  left: -10px;
+  top: -12px;
+  left: -12px;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* ==============================
+   ICON BUTTONS (Apple)
+================================= */
 .close,
 .edit {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 14px;
+  right: 14px;
   cursor: pointer;
-  background: none;
-  border: skyblue;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.22s ease;
+  color: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .edit {
-  right: 40px;
+  right: 62px;
 }
 
+.close:hover,
+.edit:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* ==============================
+   BUTTONS (iOS Style)
+================================= */
 .btn {
-  color: #d06c6c;
   border: 0;
-  border-radius: 8px;
-  color: #000000;
-  width: 100px;
-  height: 40px;
+  border-radius: 16px;
+  color: #ffffff;
+  width: 118px;
+  height: 44px;
   cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.25s ease;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
 
 .btn-primary {
-  background-color: rgb(255, 0, 0);
+  background: linear-gradient(135deg, #ff2d55, #7c3aed);
 }
 
 .btn-secondary {
-  background: #ff6a95;
+  background: linear-gradient(135deg, #0a84ff, #5e5ce6);
 }
 
 .btn:hover {
-  transform: scale(0.98);
-  opacity: 0.9;
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn:disabled {
-  background-color: #cccccc;
-  color: hsl(227, 83%, 58%);
-  cursor: auto;
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.45);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .btn:disabled:hover {
@@ -182,13 +325,108 @@ input:focus {
   opacity: 1;
 }
 
+/* ==============================
+   MESSAGE
+================================= */
 .message {
   padding-top: 10px;
   text-align: center;
-  color: #0008ff;
+  color: rgba(138, 166, 255, 0.95);
+  font-weight: 600;
 }
- 
+
+/* ==============================
+   ACTIVE CLASS
+================================= */
 .active {
-  background: #00ff55;
-  color:rgb(255, 0, 0);
+  background: linear-gradient(135deg, #34c759, #00c853);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==============================
+   RESPONSIVE (Full)
+================================= */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .card {
+    padding: 34px 26px;
+  }
+
+  .card h2 {
+    font-size: 20px;
+  }
+
+  header {
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 12px 0;
+  }
+
+  .card {
+    padding: 28px 18px;
+    border-radius: 20px;
+  }
+
+  .rating {
+    gap: 10px;
+    margin: 22px 0 28px;
+  }
+
+  .rating li,
+  .num-display {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .num-display {
+    width: 58px;
+    height: 58px;
+    top: -10px;
+    left: -10px;
+  }
+
+  .btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 16px;
+  }
+
+  .feedback-stats {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 360px) {
+  .rating li,
+  .num-display {
+    width: 46px;
+    height: 46px;
+    font-size: 15px;
+  }
+
+  .rating li label {
+    width: 44px;
+    height: 44px;
+  }
+
+  .close,
+  .edit {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+  }
+
+  .edit {
+    right: 56px;
+  }
 }
